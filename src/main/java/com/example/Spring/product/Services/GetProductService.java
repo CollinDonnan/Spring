@@ -1,6 +1,7 @@
 package com.example.Spring.product.Services;
 
 import com.example.Spring.Query;
+import com.example.Spring.product.Exceptions.ProductNotFoundExecption;
 import com.example.Spring.product.Model.Product;
 import com.example.Spring.product.Model.ProductDTO;
 import com.example.Spring.product.ProductRepository;
@@ -26,6 +27,6 @@ public class GetProductService implements Query<Integer, ProductDTO> {
         if(productOptional.isPresent()){
             return ResponseEntity.ok(new ProductDTO(productOptional.get()));
         }
-        return null;
+        throw new ProductNotFoundExecption();
     }
 }

@@ -1,6 +1,7 @@
 package com.example.Spring.product.Services;
 
 import com.example.Spring.Command;
+import com.example.Spring.product.Exceptions.ProductNotFoundExecption;
 import com.example.Spring.product.Model.Product;
 import com.example.Spring.product.ProductRepository;
 import org.springframework.http.HttpStatus;
@@ -25,6 +26,6 @@ public class DeleteProductService implements Command<Integer, Void> {
             productRepository.deleteById(id);
             return ResponseEntity.status(HttpStatus.NO_CONTENT).build();
         }
-        return null;
+        throw new ProductNotFoundExecption();
     }
 }
